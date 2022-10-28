@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Javascript研修</title>
+    </head>
+    <body>
+        <p id="p_id" class="data-test">
+            今日は<strong>DOM編</strong>です
+        </p>
+        <p id="p_id2">
+            よろしくね
+        </p>
+        <textarea id="rawArea" class="noLog" style="width:350px; height:350px; resize: none;">
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Javascript研修&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;p id=&quot;p_id&quot; class=&quot;data-test&quot;&gt;
+            今日は&lt;strong&gt;DOM編&lt;/strong&gt;です
+        &lt;/p&gt;
+        &lt;p id=&quot;p_id2&quot;&gt;
+            よろしくね
+        &lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+        </textarea><button id="buttonNode" class="noLog" style="height:356px;vertical-align:top">Node解析</button><textarea id="nodeArea" class="noLog" style="width:350px; height:350px; resize: none;"></textarea><a href="treeNode2.html" class="noLog">_</a><script class="noLog">
+        const ntype = ['ELEMENT',
+                        'ATTRIBUTE',
+                        'TEXT',
+                        'CDATA_SECTION',
+                        'ENTITY_REFERENCE',
+                        'ENTITY',
+                        'PROCESSING_INSTRUCTION',
+                        'COMMENT',
+                        'DOCUMENT',
+                        'DOCUMENT_TYPE',
+                        'DOCUMENT_FRAGMENT',
+                        'NOTATION'];
+
+            function getElements(element, level){
+                if (element.classList?.contains('noLog')) {
+                    return '';
+                }
+                
+                const indent = `    `.repeat(level);
+                let ret = indent + ntype[element.nodeType - 1] + ' ';
+                if (element.nodeType === 1) {
+                    ret += element.tagName;
+                } else if (element.nodeType === 3) {
+                    ret += element.textContent.trim();
+                }
+                ret += '\n';
+
+                const attr = element.attributes;
+                if (attr) {
+                    for (let i = 0; i < attr.length; i++) {
+                        ret += indent + '-' + attr[i].name + ': ' + attr[i].value + '\n';
+                    }
+                }
+
+                const children = element.childNodes;
+                for (let i = 0; i < children.length; i++){
+                    ret += getElements(children.item(i), level + 1);
+                }
+                return ret;
+            }
+            document.getElementById('buttonNode').addEventListener('click', () => {
+                 document.getElementById('nodeArea').value = getElements(document, 0);
+                 console.log(document.getElementById('p_id').nextSibling.innerHTML);
+                
+            });
+            </script>
+        </body>
+    </html>
