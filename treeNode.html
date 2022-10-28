@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Javascript研修</title>
-	<meta charset="UTF-8">
+	    <meta charset="UTF-8"><style>* {font-family: sans-serif;font-size: 14px;}</style>
     </head>
     <body>
         <p id="p_id" class="data-test">
@@ -11,11 +11,12 @@
         <p id="p_id2">
             よろしくね
         </p>
-        <textarea id="rawArea" class="noLog" style="width:350px; height:350px; resize: none;">
+        <textarea id="rawArea" class="noLog" style="width:350px; height:600px; resize: none;">
 &lt;!DOCTYPE HTML&gt;
 &lt;html&gt;
     &lt;head&gt;
         &lt;title&gt;Javascript研修&lt;/title&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
     &lt;/head&gt;
     &lt;body&gt;
         &lt;p id=&quot;p_id&quot; class=&quot;data-test&quot;&gt;
@@ -26,7 +27,7 @@
         &lt;/p&gt;
     &lt;/body&gt;
 &lt;/html&gt;
-        </textarea><button id="buttonNode" class="noLog" style="height:356px;vertical-align:top">Node解析</button><textarea id="nodeArea" class="noLog" style="width:350px; height:350px; resize: none;"></textarea><a href="treeNode2.html" class="noLog">_</a><script class="noLog">
+        </textarea><button id="buttonNode" class="noLog" style="height:606px;vertical-align:top">Node解析</button><textarea id="nodeArea" class="noLog" style="width:350px; height:600px; resize: none;"></textarea><a href="treeNode2.html" class="noLog">_</a><script class="noLog">
         const ntype = ['ELEMENT',
                         'ATTRIBUTE',
                         'TEXT',
@@ -44,7 +45,11 @@
                 if (element.classList?.contains('noLog')) {
                     return '';
                 }
-                
+
+                if (element.tagName == 'STYLE') {
+                    return '';
+                }
+
                 const indent = `    `.repeat(level);
                 let ret = indent + ntype[element.nodeType - 1] + ' ';
                 if (element.nodeType === 1) {

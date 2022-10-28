@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html>
-    <head><title>Javascript研修</title><meta charset="UTF-8"></head><body><p id="p_id" class="data-test">今日は<strong>DOM編</strong>です</p><p id="p_id2">よろしくね</p><textarea id="rawArea" class="noLog" style="width:1050px; height:70px">
+    <head><style>* { font-family: sans-serif; font-size: 14px;}</style><title>Javascript研修</title><meta charset="UTF-8"></head><body><p id="p_id" class="data-test">今日は<strong>DOM編</strong>です</p><p id="p_id2">よろしくね</p><textarea id="rawArea" class="noLog" style="width:1200px; height:120px">
 &lt;!DOCTYPE HTML&gt;
 &lt;html&gt;
     &lt;head&gt;&lt;title&gt;Javascript研修&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;p id=&quot;p_id&quot; class=&quot;data-test&quot;&gt;今日は&lt;strong&gt;DOM編&lt;/strong&gt;です&lt;/p&gt;&lt;p id=&quot;p_id2&quot;&gt;よろしくね&lt;/p&gt;&lt;/body&gt;
 &lt;/html&gt;
-        </textarea><button id="buttonNode" class="noLog" style="width:1056px;">Node解析</button><textarea id="nodeArea" class="noLog" style="width:1050px; height:300px;"></textarea><script class="noLog">
+        </textarea><button id="buttonNode" class="noLog" style="width:1206px;">Node解析</button><textarea id="nodeArea" class="noLog" style="width:1200px; height:420px;"></textarea><script class="noLog">
         const ntype = ['ELEMENT',
                         'ATTRIBUTE',
                         'TEXT',
@@ -23,7 +23,10 @@
                 if (element.classList?.contains('noLog')) {
                     return '';
                 }
-                
+                if (element.tagName == 'STYLE') {
+                    return '';
+                }
+
                 const indent = `    `.repeat(level);
                 let ret = indent + ntype[element.nodeType - 1] + ' ';
                 if (element.nodeType === 1) {
