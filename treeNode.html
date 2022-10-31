@@ -68,7 +68,11 @@
                 const attr = element.attributes;
                 if (attr) {
                     for (let i = 0; i < attr.length; i++) {
-                        ret += indent + '-' + attr[i].name + ': ' + attr[i].value + '\n';
+                        if (attr[i].name == 'data-redeviation-bs-uid') {
+
+                        } else {
+                            ret += indent + '-' + attr[i].name + ': ' + attr[i].value + '\n';
+                        }
                     }
                 }
 
